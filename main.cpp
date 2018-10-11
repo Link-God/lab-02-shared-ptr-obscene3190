@@ -4,7 +4,7 @@ template <typename T>
 class shared_ptr {
     T *m_ptr;
     size_t *count;
-    public:
+ public:
     shared_ptr() : m_ptr(nullptr), count(nullptr) {}
     shared_ptr(T *ptr) : m_ptr(ptr), count(new size_t(1)) {}
     ~shared_ptr()
@@ -14,9 +14,7 @@ class shared_ptr {
                 delete count;
                 delete m_ptr;
             }
-            else {
-                (*count)--;
-            }
+            else (*count)--;
         }
     }
     void reset(T * ptr = nullptr)
@@ -42,9 +40,7 @@ class shared_ptr {
                     delete count;
                     delete m_ptr;
                 }
-                else {
-                    (*count)--;
-                }
+                else (*count)--;
             }
             m_ptr = other.m_ptr;
             count = other.count;
@@ -60,8 +56,6 @@ class shared_ptr {
         if (count) {
             return *count;
         }
-        else {
-            return 0;
-        }
+        else return 0;
     }
 };
